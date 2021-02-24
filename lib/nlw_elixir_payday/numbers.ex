@@ -1,4 +1,4 @@
-defmodule NlwElixirPayDay.Numbers do
+defmodule NlwElixirPayday.Numbers do
   def sum_from_file(filename) do
     File.read(filename)
     |> handle_file()
