@@ -1,7 +1,7 @@
 defmodule NlwElixirPaydayWeb.WelcomeController do
   use NlwElixirPaydayWeb, :controller
 
-  alias NlwElixirPayDay.Numbers
+  alias NlwElixirPayday.Numbers
 
   def index(conn, %{"filename" => filename}) do
     String.split(filename, ".")

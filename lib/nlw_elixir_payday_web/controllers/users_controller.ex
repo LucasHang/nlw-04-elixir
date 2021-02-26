@@ -3,18 +3,19 @@ defmodule NlwElixirPaydayWeb.UsersController do
 
   alias NlwElixirPayday.User
 
+  action_fallback NlwElixirPaydayWeb.FallbackController
+
   def create(conn, params) do
-    NlwElixirPayday.create_user(params)
-    |> handle_response(conn)
+    with {:ok, %User{} = user} <- NlwElixirPayday.create_user(params) do
+      put_status(conn, :created)
+      |> render("create.json", user: user)
+    end
   end
 
-  defp handle_response({:ok, %User{} = user}, conn) do
-    put_status(conn, :created)
-    |> render("create.json", user: user)
-  end
-  defp handle_response({:error, result}, conn) do
-    put_status(conn, :bad_request)
-    |> put_view(NlwElixirPaydayWeb.ErrorView)
-    |> render("400.json", result: result)
+  def index(conn, _params) do
+    with users <- NlwElixirPayday.index_user() do
+      put_status(conn, :ok)
+      |> render("index.json", users: users)
+    end
   end
 end

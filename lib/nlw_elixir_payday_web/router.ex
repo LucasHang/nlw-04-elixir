@@ -8,9 +8,10 @@ defmodule NlwElixirPaydayWeb.Router do
   scope "/api", NlwElixirPaydayWeb do
     pipe_through :api
 
-    get "/:filename", WelcomeController, :index
-
     post "/users", UsersController, :create
+    get "/users", UsersController, :index
+
+    get "/:filename", WelcomeController, :index
   end
 
   # Enables LiveDashboard only for development

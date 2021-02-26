@@ -1,7 +1,7 @@
-defmodule NlwElixirPayDay.NumbersTest do
+defmodule NlwElixirPayday.NumbersTest do
   use ExUnit.Case
 
-  alias NlwElixirPayDay.Numbers
+  alias NlwElixirPayday.Numbers
 
   describe "sum_from_file/1" do
     test "Quando existe um arquivo com o nome passado e uma lista de numeros no conteudo, retorna a soma total deles" do
