@@ -29,4 +29,6 @@ defmodule NlwElixirPaydayWeb.ErrorView do
       end)
     end)
   end
+
+  def render("400.json", %{result: message}), do: %{message: message}
 end

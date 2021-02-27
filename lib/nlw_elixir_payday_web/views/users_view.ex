@@ -19,15 +19,16 @@ defmodule NlwElixirPaydayWeb.UsersView do
   def render("index.json", %{users: users}) do
     Enum.map(
       users,
-      fn %{id: id, name: name, nickname: nickname, account: %Account{id: account_id, balance: balance}} ->
+      # fn %{id: id, name: name, nickname: nickname, account: %Account{id: account_id, balance: balance}} ->
+      fn %{id: id, name: name, nickname: nickname} ->
         %{
           id: id,
           name: name,
           nickname: nickname,
-          account: %{
-            id: account_id,
-            balance: balance
-          }
+          # account: %{
+          #   id: account_id,
+          #   balance: balance
+          # }
         }
       end
     )

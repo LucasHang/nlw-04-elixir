@@ -11,6 +11,9 @@ defmodule NlwElixirPaydayWeb.Router do
     post "/users", UsersController, :create
     get "/users", UsersController, :index
 
+    post "/accounts/:id/deposit", AccountsController, :deposit
+    post "/accounts/:id/withdraw", AccountsController, :withdraw
+
     get "/:filename", WelcomeController, :index
   end
 
