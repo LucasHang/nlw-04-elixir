@@ -1,8 +1,14 @@
 defmodule NlwElixirPaydayWeb.Router do
   use NlwElixirPaydayWeb, :router
 
+  import Plug.BasicAuth
+
   pipeline :api do
     plug :accepts, ["json"]
+  end
+
+  pipeline :auth do
+    plug :basic_auth, Application.compile_env(:nlw_elixir_payday, :basic_auth)
   end
 
   scope "/api", NlwElixirPaydayWeb do
@@ -11,12 +17,17 @@ defmodule NlwElixirPaydayWeb.Router do
     post "/users", UsersController, :create
     get "/users", UsersController, :index
 
-    post "/accounts/:id/deposit", AccountsController, :deposit
-    post "/accounts/:id/withdraw", AccountsController, :withdraw
-    post "/accounts/transaction", AccountsController, :transaction
     get "/accounts", AccountsController, :index
 
     get "/:filename", WelcomeController, :index
+  end
+
+  scope "/api", NlwElixirPaydayWeb do
+    pipe_through [:api, :auth]
+
+    post "/accounts/:id/deposit", AccountsController, :deposit
+    post "/accounts/:id/withdraw", AccountsController, :withdraw
+    post "/accounts/transaction", AccountsController, :transaction
   end
 
   # Enables LiveDashboard only for development

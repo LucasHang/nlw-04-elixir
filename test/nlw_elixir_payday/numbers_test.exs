@@ -1,5 +1,5 @@
 defmodule NlwElixirPayday.NumbersTest do
-  use ExUnit.Case
+  use ExUnit.Case, async: true
 
   alias NlwElixirPayday.Numbers
 
