@@ -21,6 +21,7 @@ defmodule NlwElixirPaydayWeb.ErrorView do
   def render("400.json", %{result: %Changeset{} = changeset}) do
     %{message: translate_erros(changeset)}
   end
+  def render("400.json", %{result: message}), do: %{message: message}
 
   defp translate_erros(changeset) do
     traverse_errors(changeset, fn {msg, opts} ->
@@ -29,6 +30,4 @@ defmodule NlwElixirPaydayWeb.ErrorView do
       end)
     end)
   end
-
-  def render("400.json", %{result: message}), do: %{message: message}
 end
